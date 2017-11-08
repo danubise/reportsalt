@@ -267,8 +267,7 @@ FROM  `b_invoicemain` WHERE `invoiceid`='".$invoiceid."' ORDER BY  `b_invoicemai
             $where ="";
             if(isset($_POST['show'])){
                 $invoicetable=$_POST['invoicetable'];
-                //printarray($_POST);
-                // die;
+
                 $and= false;
                 if(trim($invoicetable['manager']!="all")){
                     $where.=" `manager`='".$invoicetable['manager']."' ";
