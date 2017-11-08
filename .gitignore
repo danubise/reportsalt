@@ -1,0 +1,9 @@
+
+/.idea/*
+/.idea/workspace.xml
+/application/cloud/
+*~
+/application/controllers/admin/dompdf/
+/application/libs/PHPMailer-master/
+/application/libs/dompdf/
+
