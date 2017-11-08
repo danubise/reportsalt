@@ -109,7 +109,7 @@ JOIN `b_invoicemain` i2 ON
 	i2.`operatorid` = i.`operatorid`AND
 	i2.`dateto` = i.`maxdateto`
 JOIN `b_operators` o ON
-	o.`id` = i.`operatorid`";
+	o.`id` = i.`operatorid` AND  o.`disable`=0";
             $finaldata = $this->db->select($query);
             //echo $this->db->query->last;
            // printarray($finaldata);
@@ -301,8 +301,8 @@ FROM  `b_invoicemain` WHERE `invoiceid`='".$invoiceid."' ORDER BY  `b_invoicemai
             }else {
                // $data = $this->db->select("* from `b_invoicemain`");
             }
-            $operators = $this->db->select("`id`, `name` from `b_operators` GROUP BY `id` ASC");
-            $managers = $this->db->select("`manager` from `b_operators` GROUP BY `manager` ");
+            $operators = $this->db->select("`id`, `name` from `b_operators` WHERE `disable`=0 GROUP BY `id` ASC");
+            $managers = $this->db->select("`manager` from `b_operators` WHERE `disable`=0 GROUP BY `manager` ");
             //printarray($operators);
            // printarray($data);
             //die;
@@ -521,7 +521,7 @@ FROM  `b_invoicemain` WHERE `invoiceid`='".$invoiceid."' ORDER BY  `b_invoicemai
 
         public  function invoicechecktable(){
             //таблица сверок
-            $query_com="`id` as `operatorid`,`name` as `operatorname`,`bperiod`  FROM  `b_operators` WHERE 1 GROUP BY  `id` ASC";
+            $query_com="`id` as `operatorid`,`name` as `operatorname`,`bperiod`  FROM  `b_operators` WHERE `disable`=0 GROUP BY  `id` ASC";
             $company = $this->db->select($query_com);
 
             if(isset($_POST['save'])){
@@ -1039,7 +1039,7 @@ ENDHTMLHEAD;
             return $operationdate;
         }
         private function getreportdata($id){
-            $operator = $this->db->select("* from `b_operators` where `id`='".$_POST['clientid']."'",0);
+            $operator = $this->db->select("* from `b_operators` where  `disable`=0 AND `id`='".$_POST['clientid']."'",0);
             //printarray($operator);
             $dateto = date("d.m.Y", strtotime($_POST['dateto']));
             $datefrom = date("d.m.Y", strtotime($_POST['datefrom']));

@@ -27,15 +27,19 @@ printarray($value);
     <tbody>
     <?php
     if(is_array($operators)):
-        foreach($operators as $key=>$report):
+        foreach($operators as $key=>$operator):
             ?>
             <tr >
-                <td><?=$report['id']?>&nbsp;</td>
-                <td><?=$report['name']?>&nbsp;</td>
-                <td><?=$report['address']?>&nbsp;</td>
-                <td><a href="<?= baseurl('operator/modify/' .$report['id']) ?>">Изменить</a>/
-                    <a href="<?= baseurl('operator/delete/' . $report['id']) ?>">Удалить</a>
-                   <!-- <a href="<?= baseurl('report/select/' .$report['id']) ?>">Отчет</a></td> -->
+                <td><?=$operator['id']?>&nbsp;</td>
+                <td><?=$operator['name']?>&nbsp;</td>
+                <td><?=$operator['address']?>&nbsp;</td>
+                <td><a href="<?= baseurl('operator/modify/' .$operator['id']) ?>">Изменить</a>/
+                    <a href="<?= baseurl('operator/delete/' . $operator['id']) ?>">Удалить</a>/
+                    <?php if($operator['disable']== "0"){
+                         echo "<a href=\"" .baseurl('operator/disable/' .$operator['id'])."\">Отключить</a></td>";
+                    }else{
+                        echo "<a href=\"" .baseurl('operator/enable/' .$operator['id'])."\">Включить</a></td>";
+                    }?>
             </tr>
         <?php
         endforeach;

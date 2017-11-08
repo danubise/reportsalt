@@ -34,6 +34,14 @@ class Operator extends Core_controller {
             )
         );
     }
+    public function disable($operatorid){
+        $this->db->update('b_operators',array('disable' => "1"),"`id`='".$operatorid."'");
+        $this->index();
+    }
+    public function enable($operatorid){
+        $this->db->update('b_operators',array('disable' => "0"),"`id`='".$operatorid."'");
+        $this->index();
+    }
 
     public function create(){
         $this->view(
@@ -76,7 +84,7 @@ class Operator extends Core_controller {
         $line[]="bankDetails";
         $line[]="SWIFT";
         $line[]="IBAN";
-
+        $line[]="Disable";
         fputcsv($output, $line,";");
 
         foreach ($operators as $row) {
