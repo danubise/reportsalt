@@ -521,41 +521,18 @@ FROM  `b_invoicemain` WHERE `invoiceid`='".$invoiceid."' ORDER BY  `b_invoicemai
 
         public  function invoicechecktable(){
             //таблица сверок
-            $query_com="`id` as `operatorid`,`name` as `operatorname`,`bperiod`  FROM  `b_operators` WHERE `disable`=0 GROUP BY  `id` ASC";
+            $query_com="`id` as `operatorid`,`name` as `operatorname`,`bperiod`  FROM  `b_operators` GROUP BY  `id` ASC";
             $company = $this->db->select($query_com);
 
             if(isset($_POST['save'])){
-                /*
-                 * [reconciliation] => Array
-        (
-            [datefrom] => 2015-08-31
-            [dateto] => 2015-11-30
-            [companyid] => 1450
-            [type] => week
-        )
-                 */
-              //printarray($_POST);
+
                 $balans=$_POST['balans'];
                 foreach($balans as $key=>$value){
                     $this->db->update("b_invoicemain",$value,"`id`='".$key."'");
                    //echo $this->db->query->last;
                 }
                 $comment = $_POST['comment'];
-                /*
-                foreach($comment as $key=>$value){
-                    $this->db->delete("from `b_comment` where `id`='".$key."'");
-                    echo $this->db->query->last."<br>";
-                    if(trim($value)!="") {
-                        $tar=array(
-                            'id'=>$key,
-                            'comment'=>$value
-                        );
-                        $this->db->insert("b_comment", $tar);
-                        echo $this->db->query->last."<br>";
-                    }
 
-                }
-                */
                 if(!$this->recalculateoperator($_POST['reconciliation']['companyid'])){
                     echo "ошибка перерасчета свекри ";
                     printarray($_POST);
@@ -565,15 +542,7 @@ FROM  `b_invoicemain` WHERE `invoiceid`='".$invoiceid."' ORDER BY  `b_invoicemai
             }
 
             if(isset($_POST['show']) || isset($_POST['save'])){
-                /*
-                 * [reconciliation] => Array
-        (
-            [type] => week
-            [date] => 2015-10-31
-        )
 
-    [show] => Показать
-                 */
                 $reconciliation=$_POST['reconciliation'];
                 $fields=" `operatorid` ,
  `invoiceid` ,
@@ -623,7 +592,7 @@ FROM  `b_invoicemain` WHERE `invoiceid`='".$invoiceid."' ORDER BY  `b_invoicemai
                     //printarray($result);
                 //echo "999";
                     $total= array();
-
+                if($result != "")
                     foreach($result as $key=> $value){
                         switch($reconciliation['type']){
                             case "week":;
@@ -643,11 +612,6 @@ FROM  `b_invoicemain` WHERE `invoiceid`='".$invoiceid."' ORDER BY  `b_invoicemai
                         $data[$key]['id']=$value['id'];
 
                         $data[$key]['begin balance']=$value['balans'];
-                        // if($value['balans']!=0){
-                            //$data[$key]['begin balance']=$balans;
-                        //}else{
-                         //   $data[$key]['begin balance']=$value['balans'];
-                        //}
 
                         $data[$key]['invoicetovivaldi']=$value['invoicetovivaldi'];
                         $data[$key]['invoicetopartner']=$value['cost'];
