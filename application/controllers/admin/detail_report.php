@@ -28,7 +28,7 @@
 			$month = $_POST['month'];
 			$year = $_POST['year'];
 			$end = date('t', strtotime('01.' . $month . '.' . $year));
-			$res = $this->db->select("* from `b_operators` ORDER BY `id` ASC");
+			$res = $this->db->select("* from `b_operators` where `disable`=0 ORDER BY `id` ASC");
 			if ($res) {
 				foreach ($res AS $item) {
 					$operators[$item['id']] = $item;
@@ -61,6 +61,7 @@
 				<tbody>';
 				$sumbyday = array();
 					foreach ($operators AS $key => $operator) {
+					    if(empty($operator['name'])){ continue; }
 						$sumbyoperator=0;
 						echo '<tr>
 							<th>'.$key.'</th>
