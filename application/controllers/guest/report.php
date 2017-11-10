@@ -433,7 +433,7 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
         $dayofmanth=date("j", strtotime($billoperate));
         if($dayofmanth==1){
             echo "month and halfmonth";
-            $operators=$this->db->select("* FROM  `b_operators` WHERE (`bperiod`='month' OR `bperiod`='halfmonth')  and `id`='".$id."'");
+            $operators=$this->db->select("* FROM  `b_operators` WHERE  (`bperiod`='month' OR `bperiod`='halfmonth')  and `id`='".$id."'");
             echo $this->db->query->last;
             $config['operators']=$operators;
             $this->autoformat($config);
@@ -441,7 +441,7 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
         }
         if($dayofmanth==16){
             echo "halfmonth";
-            $operators=$this->db->select("* FROM  `b_operators` WHERE `bperiod`='halfmonth' and `id`='".$id."'");
+            $operators=$this->db->select("* FROM  `b_operators` WHERE  `bperiod`='halfmonth' and `id`='".$id."'");
             echo $this->db->query->last;
             $config['operators']=$operators;
             $this->autoformat($config);
@@ -457,7 +457,7 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
         $config['date']=$billoperate;
         if($weekday==1){
             echo "week";
-            $operators=$this->db->select("* FROM  `b_operators` WHERE `bperiod`='week'");
+            $operators=$this->db->select("* FROM  `b_operators` WHERE `disable`=0 AND `bperiod`='week'");
             echo $this->db->query->last;
             $config['operators']=$operators;
             $this->autoformat($config);
@@ -465,7 +465,7 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
         $dayofmanth=date("j", strtotime($billoperate));
         if($dayofmanth==1){
             echo "month and halfmonth";
-            $operators=$this->db->select("* FROM  `b_operators` WHERE `bperiod`='month' OR `bperiod`='halfmonth'");
+            $operators=$this->db->select("* FROM  `b_operators` WHERE  `disable`=0 AND `bperiod`='month' OR `bperiod`='halfmonth'");
             echo $this->db->query->last;
             $config['operators']=$operators;
             $this->autoformat($config);
@@ -473,7 +473,7 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
         }
         if($dayofmanth==16){
             echo "halfmonth";
-            $operators=$this->db->select("* FROM  `b_operators` WHERE `bperiod`='halfmonth'");
+            $operators=$this->db->select("* FROM  `b_operators` WHERE `disable`=0 AND `bperiod`='halfmonth'");
             echo $this->db->query->last;
             $config['operators']=$operators;
             $this->autoformat($config);
@@ -624,7 +624,7 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
             }
 
             //получение оплаты для поля $invoicetovivaldi
-            $invoicetovivaldiurl = "http://" . $serverip . "/bgbilling/executer?user=" . $user . "&pswd=" . $password . "&module=voiceip&direct=2&mid=4&pageSize=25&date2=" . $date['end'] . "&unit=1&pageIndex=1&action=LoginsAmount&date1=" . $date['begin'] . "&contentType=xml&cid=" . $operator['id'] . "&mask=&";
+            $invoicetovivaldiurl = "http://" . $serverip . "/bgbilling/executer?user=" . $user . "&pswd=" . $password . "&module=voiceip&direct=2&mid=4&pageSize=2000&date2=" . $date['end'] . "&unit=1&pageIndex=1&action=LoginsAmount&date1=" . $date['begin'] . "&contentType=xml&cid=" . $operator['id'] . "&mask=&";
             //http://95.141.192.5:8080/bgbilling/executer?user=aconn&pswd=AhW2po1c&module=voiceip&direct=2&mid=4&pageSize=25&date2=30.10.2015&date1=20.10.2015&unit=1&pageIndex=1&action=LoginsAmount&contentType=xml&cid=22&mask=&
             echo $invoicetovivaldiurl . "<br>";
             //запрос списка логинов
@@ -867,7 +867,7 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
             }
 
             //echo $aliase . "<br>";
-            $url2 = "http://" . $serverip . "/bgbilling/executer?user=" . $user . "&pswd=" . $password . "&module=voiceip&direct=1&mid=4&pageSize=100&date2=" .  $date['end'] . "&date1=" .  $date['begin']  . "&nofree=1&unit=1&pageIndex=1&action=LoginDirect&id=" . urlencode($aliase) . "&contentType=xml&cid=".$operator['id']."&mask=&order=&";
+            $url2 = "http://" . $serverip . "/bgbilling/executer?user=" . $user . "&pswd=" . $password . "&module=voiceip&direct=1&mid=4&pageSize=2000&date2=" .  $date['end'] . "&date1=" .  $date['begin']  . "&nofree=1&unit=1&pageIndex=1&action=LoginDirect&id=" . urlencode($aliase) . "&contentType=xml&cid=".$operator['id']."&mask=&order=&";
             //запрос детализации по логинам
             echo "запрос детализации по логинам<br>";
             echo $url2 . "<br>";
