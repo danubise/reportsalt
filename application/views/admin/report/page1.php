@@ -509,15 +509,17 @@
     </tr>
     <tr style="height:29px;">
         <td style="font-family:Times New Roman;font-size:12px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px" colspan=5>
-            <nobr>Beneficiary’s name:VIVALDI TELECOM LP</nobr>
+            <nobr>Beneficiary’s name:VIVALDI TELECOM LP<br/>
+                  Beneficiary’s Address: Suite 260, 2323 - 32 A venue N.E., Calgary, Alberta T2E 623, Canada
+            </nobr>
         </td>
     </tr>
     <tr style="height:158px;">
         <td style="font-family:Times New Roman;font-size:12px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px" colspan=5>
-            <nobr>BANK NAME: Paysera LT<br/>
-                BANK ADDRESS: M&eacute;nulio 7, Vilnius <br/>
-                BENEFICIARY`S BANK SWIFT: EVIULT21XXX<br/>
-                BENEFICIARY`S ACCOUNT Number (IBAN) : LT723500010003090418 (EURO)<br/>
+            <nobr>BANK NAME: Bank of Cyprus Public Company Ltd.<br/>
+                BANK ADDRESS: 121-123 Arch. Makariou III Ave., 3021, Limassol,Cyprus <br/>
+                BENEFICIARY`S BANK SWIFT: BCYPCY2N<br/>
+                BENEFICIARY`S ACCOUNT Number (IBAN) : CY12002001950000357027353628 (USD)<br/>
                 <br/>
             </nobr>
         </td>
