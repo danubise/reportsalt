@@ -1,8 +1,8 @@
 <?php
-	class Detail_report extends Core_controller {
+	class Detail_report_incomming extends Core_controller {
 		public function __construct() {
 			parent::__construct();
-			$this->module_name = 'Трафик OUT';
+			$this->module_name = 'Трафик IN';
 		}
 		
 		public function index(){
@@ -11,7 +11,7 @@
 			$js = array(
 				baseurl('pub/js/bootstrap-datepicker.js'),
 				baseurl('pub/js/moment.min.js'),
-				baseurl('pub/js/detail_report.js')
+				baseurl('pub/js/detail_report_incomming.js')
 			);
 			$this->view(
 				array(
@@ -34,7 +34,7 @@
 					$operators[$item['id']] = $item;
 				}
 			}
-			$res = $this->db->select("* from `b_detail_report` WHERE `date` LIKE '" . date('Y-m', strtotime($year . "-" . $month . "-01")) . "%'");
+			$res = $this->db->select("* from `b_detail_report_incomming` WHERE `date` LIKE '" . date('Y-m', strtotime($year . "-" . $month . "-01")) . "%'");
 			if ($res) {
 				foreach ($res AS $item) {
 					$operators[$item['oid']]['b_detail_report'][$item['date']] = $item['money_amount'];
@@ -110,29 +110,34 @@
 			$user = "aconn";
 			$password = "AhW2po1c";
 			$summ = array();
-			$url = 'http://'.$serverip.'/bgbilling/executer?user='.$user.'&pswd='.$password.'&module=voiceip&pageSize=100&direct=1&mask=&contentType=xml&cid='.$oid.'&pageIndex=1&unit=1&action=LoginsAmount&date2='.date('d.m.Y', strtotime($date)).'&mid=4&date1='.date('d.m.Y', strtotime($date));
+			$url = 'http://'.$serverip.'/bgbilling/executer?user='.$user.'&pswd='.$password.'&module=voiceip&pageSize=100&direct=2&mask=&contentType=xml&cid='.$oid.'&pageIndex=1&unit=1&action=LoginsAmount&date2='.date('d.m.Y', strtotime($date)).'&mid=4&date1='.date('d.m.Y', strtotime($date));
 			$data = simplexml_load_string(file_get_contents($url));
+			//echo "******************* " .$data['status']." *****";
+
 			if ((string)$data['status'] == 'ok') {
 				$data = (float)$data->table->data->attributes()->money_amount;
 			
-				$check = $this->db->select('* FROM `b_detail_report` WHERE `date` = "' . $date . '" AND `oid` = ' . $oid, 0);
+				$check = $this->db->select('* FROM `b_detail_report_incomming` WHERE `date` = "' . $date . '" AND `oid` = ' . $oid, 0);
 				if ($check) {
-					$this->db->update('b_detail_report', array(
+					$this->db->update('b_detail_report_incomming', array(
 						'money_amount' => $data,
 					), 'id=' . $check['id']);
+					//echo "update";
 				} else {
-					$this->db->insert('b_detail_report', array(
+					$this->db->insert('b_detail_report_incomming', array(
 						'oid' => $oid,
 						'date' => $date,
 						'money_amount' => $data
 					));
+					//echo "insert" ;
 				}
+
 				echo $data;
 			} else {
 				echo '-';
-				$check = $this->db->select('* FROM `b_detail_report` WHERE `date` = "' . $date . '" AND `oid` = ' . $oid, 0);
+				$check = $this->db->select('* FROM `b_detail_report_incomming` WHERE `date` = "' . $date . '" AND `oid` = ' . $oid, 0);
 				if (!$check) {
-					$this->db->insert('b_detail_report', array(
+					$this->db->insert('b_detail_report_incomming', array(
 						'oid' => $oid,
 						'date' => $date,
 						'money_amount' => '-'
