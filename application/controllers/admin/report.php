@@ -198,44 +198,31 @@ JOIN `b_operators` o ON
             )
         );
         return;
-
-
     }
-    public function removeitem($invoiceid="", $itemid=""){
-        $this->db->delete("from `b_invoicedetail` where `id`='".$itemid."'");
-        $this->invoiceedit($invoiceid);
 
-    }
-    private function recalculate($invoiceid){
+    private function recalculate(){
         for($i=1;$i<=count($_POST['maindata']);$i++){
             $detailsum=$this->db->select("SUM(`cost`) as `cost`,SUM(`time`) as `time`
                                             FROM `b_invoicedetail`
-                                            WHERE `invoiceid`='".$invoiceid."' AND `part`='".$i."'",0);
+                                            WHERE `invoiceid`='".$_POST['maindata'][0]['invoiceid']."' AND `part`='".$i."'",0);
             $detailsum['timeminut'] = round($detailsum['time']/60);
             $detailsum['timetext'] = $this->sectotime($detailsum['time']);
-            
-            $this->db->update("b_invoicemain",$detailsum,"`invoiceid`='".$invoiceid."' AND `part`='".$i."'");
+
+            $this->db->update("b_invoicemain",$detailsum,"`invoiceid`='".$_POST['maindata'][0]['invoiceid']."' AND `part`='".$i."'");
         }
     }
     public function invoiceedit($invoiceid=""){
-           //
+
             if(isset($_POST['deleteitems'])){
-                $invoiceid = $_POST['maindata'][0]['invoiceid'];
-                printarray($_POST);
                 foreach($_POST['delete'] as $keyId => $value){
                     $this->db->delete("from `b_invoicedetail` where `id`='".$keyId."'");
                 }
-                $this->recalculate($invoiceid);
+                $this->recalculate();
             }
 
             if(isset($_POST['addnewitem'])){
-                printarray($_POST);
-                //die;
-                $invoiceData = $this->db->select("* from `b_invoicemain` where `invoiceid`=".$_POST['maindata'][0]['invoiceid'], false);
 
-                $invoiceid = $_POST['maindata'][0]['invoiceid'];
-                //echo $this->db->query->last;
-                //printarray ($invoiceData);
+                $invoiceData = $this->db->select("* from `b_invoicemain` where `invoiceid`=".$_POST['maindata'][0]['invoiceid'], false);
 
                 $begintime = explode("-",$invoiceData['datefrom']);
                 $endtime = explode("-",$invoiceData['dateto']);
@@ -252,10 +239,8 @@ JOIN `b_operators` o ON
                 $newLine['part'] = $_POST['newdata']['part'];
                 $newLine['handmade'] = "1";
 
-
-                //printarray($newLine);
                 $this->db->insert("b_invoicedetail", $newLine);
-                $this->recalculate($invoiceid);
+                $this->recalculate();
             }
 
             if(isset($_POST['save']) || isset($_POST['recalculate'])){
@@ -268,12 +253,15 @@ JOIN `b_operators` o ON
                         $this->db->update("b_invoicedetail",$value,"`id`='".$key."'");
                     }
                 }
-                $invoiceid=$_POST['maindata'][0]['invoiceid'];
-                $this->recalculate($invoiceid);
+                $this->recalculate();
                 if(!isset($_POST['recalculate'])) {
                     echo "<script>window.close();</script>";
                     die;
                 }
+            }
+
+            if(isset($_POST['maindata'][0]['invoiceid'])){
+                $invoiceid=$_POST['maindata'][0]['invoiceid'];
             }
 
             if($invoiceid==""){
