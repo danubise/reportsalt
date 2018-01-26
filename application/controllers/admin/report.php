@@ -254,6 +254,7 @@ JOIN `b_operators` o ON
                     }
                 }
                 $this->recalculate();
+
                 if(!isset($_POST['recalculate'])) {
                     echo "<script>window.close();</script>";
                     die;
