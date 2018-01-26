@@ -97,12 +97,12 @@
                 <tr>
                     <td></td>
                     <td><?=$value['part']?></td>
-                    <input type="hidden" name="detaildata[new][part]" value="<?=$value['part']?>">
-                    <td><input type="text" name="detaildata[new][dest_code]" value=""></td>
-                    <td><input type="text" name="detaildata[new][dest]" value=""></td>
-                    <td><input type="text" name="detaildata[new][time]" value=""></td>
+                    <input type="hidden" name="newdata[part]" value="<?=$value['part']?>">
+                    <td><input type="text" name="newdata[dest_code]" value=""></td>
+                    <td><input type="text" name="newdata[dest]" value=""></td>
+                    <td><input type="text" name="newdata[time]" value=""></td>
                     <td>
-                        <input type="text" name="detaildata[new][cost]" value="">&nbsp;
+                        <input type="text" name="newdata[cost]" value="">&nbsp;
                         <input type="submit" name="addnewitem" value="Добавить">&nbsp;
                     </td>
                 </tr>
