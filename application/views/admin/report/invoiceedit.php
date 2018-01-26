@@ -84,6 +84,18 @@
 
                 </tr>
                 <?php endforeach; ?>
+
+                <tr>
+                    <td><?=$value['part']?></td>
+                    <td><input type="text" name="detaildata[new][dest_code]" value=""></td>
+                    <td><input type="text" name="detaildata[new][dest]" value=""></td>
+                    <td><input type="text" name="detaildata[new][time]" value=""></td>
+                    <td>
+                        <input type="text" name="detaildata[new][cost]" value="">&nbsp;
+                        <input type="submit" name="addnewitem" value="Добавить">&nbsp;
+                    </td>
+                </tr>
+
             </table>
 
             <th><br>

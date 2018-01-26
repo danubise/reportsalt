@@ -201,9 +201,13 @@ JOIN `b_operators` o ON
 
 
     }
+    public function invoiceedit($invoiceid=""){
+           //
 
-        public function invoiceedit($invoiceid=""){
-           // printarray($_POST);
+            if(isset($_POST['addnewitem'])){
+                printarray($_POST);
+                die;
+            }
             if(isset($_POST['save']) || isset($_POST['recalculate'])){
                 $maindataar=$_POST['maindata'];
                 $part=0;
@@ -233,6 +237,7 @@ JOIN `b_operators` o ON
                     die;
                 }
             }
+
             if($invoiceid==""){
                 $this->view(
                     array(
@@ -244,7 +249,7 @@ JOIN `b_operators` o ON
             return;
             }
             $maindata=$this->db->select("`id`,`invoiceid`,`date`,`comment`,`datefrom`,`dateto`,`operatorid`,`operatorname`,`bperiodtext`,`duedatetext`,`balans`,`realdatefrom`,`realdateto`,  `cost`,  `time`, `timeminut`,`part`
-FROM  `b_invoicemain` WHERE `invoiceid`='".$invoiceid."' ORDER BY  `b_invoicemain`.`date` DESC ");
+    FROM  `b_invoicemain` WHERE `invoiceid`='".$invoiceid."' ORDER BY  `b_invoicemain`.`date` DESC ");
             $detaildata=$this->db->select("`id`,`dest_code`,`dest`, `time`, `cost`,`part` from `b_invoicedetail` WHERE `invoiceid`='".$invoiceid."'");
 
             $this->view(
