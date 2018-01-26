@@ -68,25 +68,36 @@
         <br>
             <table border="1">
                 <tr>
+                    <td></td>
                     <td>Номер части</td>
                     <td>Направление</td>
                     <td>Название</td>
                     <td>Секунды</td>
                     <td>Цена</td>
                 </tr>
-                <?php foreach($detaildata as $key=>$value): ?>
+                <?php
+                 if($detaildata)
+                    foreach($detaildata as $key=>$value): ?>
                 <tr>
+                    <td><?php
+                        if($value['handmade']=="1"){
+                            echo "<input id=\"checkBox\" type=\"checkbox\" name=\"delete[".$value['id']."]\">";
+                        }
+                    ?>
+                    </td>
                     <td><?=$value['part']?></td>
                     <td><input type="hidden" name="detaildata[<?=$value['id']?>][dest_code]" value="<?=$value['dest_code']?>"> <?=$value['dest_code']?></td>
                     <td><input type="text" name="detaildata[<?=$value['id']?>][dest]" value="<?=$value['dest']?>"></td>
                     <td><input type="text" name="detaildata[<?=$value['id']?>][time]" value="<?=$value['time']?>"></td>
-                    <td><input type="text" name="detaildata[<?=$value['id']?>][cost]" value="<?=$value['cost']?>"></td>
+                    <td><input type="text" name="detaildata[<?=$value['id']?>][cost]" value="<?=$value['cost']?>">&nbsp;</td>
 
                 </tr>
                 <?php endforeach; ?>
 
                 <tr>
+                    <td></td>
                     <td><?=$value['part']?></td>
+                    <input type="hidden" name="detaildata[new][part]" value="<?=$value['part']?>">
                     <td><input type="text" name="detaildata[new][dest_code]" value=""></td>
                     <td><input type="text" name="detaildata[new][dest]" value=""></td>
                     <td><input type="text" name="detaildata[new][time]" value=""></td>
@@ -99,7 +110,7 @@
             </table>
 
             <th><br>
-                <input type="submit" name="save" value="Сохранить">&nbsp;<input type="submit" name="recalculate" value="Пересчитать"></th>
+                <input type="submit" name="deleteitems" value="Удалить">&nbsp;<input type="submit" name="save" value="Сохранить">&nbsp;<input type="submit" name="recalculate" value="Пересчитать"></th>
         </form>
         </tr>
     </thead>
