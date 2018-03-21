@@ -29,6 +29,7 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
+                <li><a href="<?=baseurl("detail_report_time_out")?>">Минуты OUT</a></li>
                 <li><a href="<?=baseurl("detail_report")?>">Трафик OUT</a></li>
                 <li><a href="<?=baseurl("detail_report_incomming")?>">Трафик IN</a></li>
 				<!-- <li><a href="<?=baseurl("report")?>">Отчеты</a></li> ---->
