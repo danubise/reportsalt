@@ -29,9 +29,21 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
-                <li><a href="<?=baseurl("detail_report_time_out")?>">Минуты OUT</a></li>
-                <li><a href="<?=baseurl("detail_report")?>">Трафик OUT</a></li>
-                <li><a href="<?=baseurl("detail_report_incomming")?>">Трафик IN</a></li>
+            <li>
+            <div class="btn-group">
+              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Traffic
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item btn" href="<?=baseurl("detail_report_time_out")?>">Минуты OUT</a>
+                <a class="dropdown-item btn" href="<?=baseurl("detail_report")?>">Трафик OUT</a>
+                <a class="dropdown-item btn" href="<?=baseurl("detail_report_incomming")?>">Трафик IN</a>
+              </div>
+            </div>
+            </li>
+                <!-- <li><a href="<?=baseurl("detail_report_time_out")?>">Минуты OUT</a></li> --->
+                <!-- <li><a href="<?=baseurl("detail_report")?>">Трафик OUT</a></li> --->
+                <!-- <li><a href="<?=baseurl("detail_report_incomming")?>">Трафик IN</a></li> --->
 				<!-- <li><a href="<?=baseurl("report")?>">Отчеты</a></li> ---->
                 <li><a href="<?=baseurl("operator")?>">Операторы</a></li>
                 <!-- <li><a href="<?=baseurl("report/reporthistorygoup")?>">История</a></li> --->

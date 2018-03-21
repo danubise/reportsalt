@@ -37,7 +37,7 @@
 			$res = $this->db->select("* from `b_detail_report_time_out` WHERE `date` LIKE '" . date('Y-m', strtotime($year . "-" . $month . "-01")) . "%'");
 			if ($res) {
 				foreach ($res AS $item) {
-					$operators[$item['oid']]['b_detail_report_time_out'][$item['date']] = $item['money_amount'];
+					$operators[$item['oid']]['b_detail_report_time_out'][$item['date']] = $item['round_time'];
 				}
 			}
 			echo '<hr>
@@ -77,7 +77,7 @@
 										if(!isset($sumbyday[$i])){
 											$sumbyday[$i] = 0;
 										}
-										$sumbyday[$i] = $sumbyday[$i] +  $operators[$key]['b_detail_report'][$date];
+										$sumbyday[$i] = $sumbyday[$i] +  $operators[$key]['b_detail_report_time_out'][$date];
 									} else {
 										echo '-';
 									}
