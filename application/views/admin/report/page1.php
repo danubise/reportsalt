@@ -30,6 +30,23 @@
         <td style="min-width:50px">
             <nobr>&nbsp;</nobr>
         </td>
+        <td style="min-width:50px">
+            <nobr>&nbsp;</nobr>
+        </td>
+        <td style="min-width:50px">
+            <nobr>&nbsp;</nobr>
+        </td>
+        <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px" colspan=0>
+            <nobr>Registration number: SL 20672382</nobr>
+        </td>
+    </tr>
+    <tr style="height:19.533333333333px;">
+        <td style="min-width:50px">
+            <nobr>&nbsp;</nobr>
+        </td>
+        <td style="min-width:50px">
+            <nobr>&nbsp;</nobr>
+        </td>
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px">
             <nobr>Suite 260, 2323 -</nobr>
         </td>
