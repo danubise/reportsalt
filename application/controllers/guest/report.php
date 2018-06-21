@@ -36,6 +36,22 @@ class Report extends Core_controller {
         );
     }
 
+    public function getCurrency() {
+        $data = CBR_XML_Daily_Ru();
+        $this->db->insert("b_currency", array(
+            "date" => "2018-06-09",
+            "currency" => "USD",
+            "price" => $data->Valute->USD->Value
+        ));
+        $this->db->insert("b_currency", array(
+            "date" => "2018-06-09",
+            "currency" =>"EUR",
+            "price" => $data->Valute->EUR->Value
+        ));
+
+        //echo "Обменный курс USD по ЦБ РФ на сегодня: {$data->Valute->USD->Value}";
+    }
+
     public function login() {
         if($this->user_model->auth($_POST['login'],$_POST['pass'])) {
 
