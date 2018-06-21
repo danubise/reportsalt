@@ -30,6 +30,16 @@ if(isset($error)){echo "<font color=\"red\">Оператор уже сущест
                 -->
         </tr>
         <tr>
+            <td>Валюта</td>
+            <td>
+                <select name="operator[currency]">
+                    <option value="rubl" selected>Рубль</option>
+                    <option value="dollar" >Доллар</option>
+                    <option value="euro" >Евро</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td>оплата</td>
             <td><input name="operator[payment]" class="form-control" value="<?=$operator['payment']?>"></td>
         </tr>

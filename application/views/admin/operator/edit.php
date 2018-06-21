@@ -35,6 +35,16 @@
             <td><input name="operator[payment]" class="form-control" value="<?=$operator['payment']?>"></td>
         </tr>
         <tr>
+            <td>Валюта</td>
+            <td>
+                <select name="operator[currency]">
+                    <option value="rubl" <?php if($operator['currency']=="rubl") echo "selected"; ?>>Рубль</option>
+                    <option value="dollar" <?php if($operator['currency']=="dollar") echo "selected"; ?>>Доллар</option>
+                    <option value="euro" <?php if($operator['currency']=="euro") echo "selected"; ?>>Евро</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td>Менеджер</td>
             <td><input name="operator[manager]" class="form-control" value="<?=$operator['manager']?>"></td>
         </tr>
