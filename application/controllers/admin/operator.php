@@ -75,6 +75,7 @@ class Operator extends Core_controller {
         $line[]="Operator name";
         $line[]="Address";
         $line[]="BillPeriod";
+        $line[]="Currency";
         $line[]="Days";
         $line[]="Manager";
         $line[]="Email";
