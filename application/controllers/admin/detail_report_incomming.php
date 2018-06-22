@@ -43,15 +43,12 @@
 			$res = $this->db->select("* from `b_detail_report_incomming` WHERE `date` LIKE '" . date('Y-m', strtotime($year . "-" . $month . "-01")) . "%'");
 			if ($res) {
 				foreach ($res AS $item) {
-                    if($operators[$item['oid']]['currency'] == 'RUB'){
-                        $item['cost']=$item['cost']/$currency[$item['date']]['USD'];
-                        $item['invoicetovivaldi']=$item['invoicetovivaldi']/$currency[$item['date']]['USD'];
-                        $item['endbalans']=$item['endbalans']/$currency[$item['date']]['USD'];
+                    if($operators[$item['oid']]['currency'] == 'RUB' && isset($currency[$item['date']]['USD'])){
+                        $item['money_amount'] = $item['money_amount'] / $currency[$item['date']]['USD'];
                     }
-                    if($operators[$item['oid']]['currency'] == 'EUR'){
-                        $item['cost']=$item['cost']*$currency[$item['date']]['EUR']/$currency[$item['date']]['USD'];
-                        $item['invoicetovivaldi']=$item['invoicetovivaldi']*$currency[$item['date']]['EUR']/$currency[$item['date']]['USD'];
-                        $item['endbalans']=$item['endbalans']*$currency[$item['date']]['EUR']/$currency[$item['date']]['USD'];
+                    if($operators[$item['oid']]['currency'] == 'EUR' && isset($currency[$item['date']]['EUR']) &&  isset($currency[$item['date']]['USD'])){
+                        $item['money_amount'] = $item['money_amount']*$currency[$item['date']]['EUR']/$currency[$item['date']]['USD'];
+
                     }
 					$operators[$item['oid']]['b_detail_report'][$item['date']] = $item['money_amount'];
 				}
@@ -88,7 +85,7 @@
 								if ($date <= date('Y-m-d'))
 									echo '<a href="" id="refresh_detail_report_item">';
 									if (isset($operators[$key]['b_detail_report'][$date])) {
-										echo $operators[$key]['b_detail_report'][$date];
+										echo number_format($operators[$key]['b_detail_report'][$date], 2, '.', '');
 										$sumbyoperator=$sumbyoperator +  $operators[$key]['b_detail_report'][$date];
 										if(!isset($sumbyday[$i])){
 											$sumbyday[$i] = 0;
@@ -102,7 +99,7 @@
 								echo '</td>';
 							}
 						
-						echo '<td>'.$sumbyoperator.'</td></tr>';
+						echo '<td>'.number_format($sumbyoperator, 2, '.', '').'</td></tr>';
 					}
 					echo '<tr><td></td><td>Total</td>';
 					$totalsum =0;
@@ -129,6 +126,16 @@
 			$url = 'http://'.$serverip.'/bgbilling/executer?user='.$user.'&pswd='.$password.'&module=voiceip&pageSize=100&direct=2&mask=&contentType=xml&cid='.$oid.'&pageIndex=1&unit=1&action=LoginsAmount&date2='.date('d.m.Y', strtotime($date)).'&mid=4&date1='.date('d.m.Y', strtotime($date));
 			$data = simplexml_load_string(file_get_contents($url));
 			//echo "******************* " .$data['status']." *****";
+            $currencydata= $this->db->select("* from `b_currency` where `date` ='".$date."'");
+            $currency = array();
+            if($currencydata != false) {
+
+                foreach ($currencydata as $key => $data) {
+                    $currency[$data['date']][$data['currency']] = $data['price'];
+                }
+            }
+
+            $operatorCurrency = $this->db->select("currency from `b_operators` where `disable`=0 and `id` = '".$oid."'",false);
 
 			if ((string)$data['status'] == 'ok') {
 				$data = (float)$data->table->data->attributes()->money_amount;
@@ -147,8 +154,14 @@
 					));
 					//echo "insert" ;
 				}
+                if($operatorCurrency == 'RUB' && isset($currency[$date]['USD'])){
+                    $data = $data / $currency[$date]['USD'];
+                }
+                if($operatorCurrency == 'EUR' && isset($currency[$date]['EUR']) &&  isset($currency[$date]['USD'])){
+                    $data = $data * $currency[$date]['EUR'] / $currency[$date]['USD'];
 
-				echo $data;
+                }
+				echo number_format($data, 2, '.', '');
 			} else {
 				echo '-';
 				$check = $this->db->select('* FROM `b_detail_report_incomming` WHERE `date` = "' . $date . '" AND `oid` = ' . $oid, 0);
