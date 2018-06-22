@@ -63,13 +63,17 @@
          */
         if(isset($finaldata)):
         foreach($finaldata as $key=>$value):
+            $div = 1;
+            if($value['currency'] == 'RUB'){
+                $div=$currency['USD'];
+            }
         ?>
         <tr>
         <td><?=$value['period']?></td>
         <td><?=$value['operatorname']?></td>
-        <td><?=$value['cost']?></td>
-        <td><?=$value['invoicetovivaldi']?></td>
-        <td><?=$value['endbalans']?></td>
+        <td><?=$value['cost']/$div?></td>
+        <td><?=$value['invoicetovivaldi']/$div?></td>
+        <td><?=$value['endbalans']/$div?></td>
         <td><?=$value['manager']?></td>
 
         </tr>

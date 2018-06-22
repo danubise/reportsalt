@@ -89,7 +89,8 @@
 	i.*,
 	i2.`operatorname`,
 	i2.`endbalans`,
-        o.`manager`
+        o.`manager`,
+        o.`currency`
 FROM (
 SELECT
     `operatorid`,
@@ -111,10 +112,16 @@ JOIN `b_invoicemain` i2 ON
 JOIN `b_operators` o ON
 	o.`id` = i.`operatorid` AND  o.`disable`=0";
             $finaldata = $this->db->select($query);
-            //echo $this->db->query->last;
-           // printarray($finaldata);
+
+            $currencydata= $this->db->select("* from `b_currency` where `date`='".$filtr['dateto']."'");
+            $currency = array();
+            foreach ($currencydata as $key => $data){
+                $currency[$data['currency']] = $data['price'];
+            }
+
 
         }
+
         if(isset($_POST['download'])){
             header("Content-Type: text/csv");
             header("Content-Disposition: attachment; filename=finalreport.csv");
@@ -193,7 +200,8 @@ JOIN `b_operators` o ON
                 'view' => 'report/finalreport',
                 'var' => array(
                     'finaldata'=>$finaldata,
-                    'filtr'=>$filtr
+                    'filtr'=>$filtr,
+                    'currency'=> $currency
                 )
             )
         );
