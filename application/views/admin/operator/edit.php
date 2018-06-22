@@ -38,9 +38,9 @@
             <td>Валюта</td>
             <td>
                 <select name="operator[currency]">
-                    <option value="rubl" <?php if($operator['currency']=="rubl") echo "selected"; ?>>Рубль</option>
-                    <option value="dollar" <?php if($operator['currency']=="dollar") echo "selected"; ?>>Доллар</option>
-                    <option value="euro" <?php if($operator['currency']=="euro") echo "selected"; ?>>Евро</option>
+                    <option value="RUB" <?php if($operator['currency']=="RUB") echo "selected"; ?>>Рубль</option>
+                    <option value="USD" <?php if($operator['currency']=="USD") echo "selected"; ?>>Доллар</option>
+                    <option value="EUR" <?php if($operator['currency']=="EUR") echo "selected"; ?>>Евро</option>
                 </select>
             </td>
         </tr>
