@@ -19,7 +19,7 @@
             $user = "aconn";
             $password = "AhW2po1c";
             $url = 'http://'.$serverip.'/bgbilling/executer?user='.$user.'&pswd='.$password.'&module=contract&action=ContractInfo&list=1&cid=';
-            $allOperators = $this->db->select('`id`,`name`,`bperiod`,`payment` FROM `b_operators` ');
+            $allOperators = $this->db->select('`id`,`name`,`bperiod`,`currency`,`payment` FROM `b_operators` ');
 
             foreach($allOperators as $key=>$operatorData){
                 $xmlObj = simplexml_load_string(file_get_contents($url.$operatorData['id']));
@@ -54,6 +54,8 @@
         }
         private function tranlate($value){
             switch($value){
+                case "currency":
+                    return "Currency";
                 case "week":
                     return "Week";
                 case "manth":
