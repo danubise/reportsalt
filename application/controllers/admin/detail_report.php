@@ -34,9 +34,36 @@
 					$operators[$item['id']] = $item;
 				}
 			}
+            $currencydata= $this->db->select("* from `b_currency` where `date` LIKE '" . date('Y-m', strtotime($year . "-" . $month . "-01")) . "%'");
+
+			$currency = array();
+            foreach ($currencydata as $key => $data){
+                $currency[$data['date']][$data['currency']] = $data['price'];
+            }
+/*
+ *     $currency ====
+ * [2018-06-22] => Array
+        (
+            [USD] => 63.7873
+            [EUR] => 73.6871
+        )
+ *
+ */
 			$res = $this->db->select("* from `b_detail_report` WHERE `date` LIKE '" . date('Y-m', strtotime($year . "-" . $month . "-01")) . "%'");
 			if ($res) {
 				foreach ($res AS $item) {
+
+                    if($operators[$item['oid']]['currency'] == 'RUB'){
+                        $item['cost']=$item['cost']/$currency[$item['date']]['USD'];
+                        $item['invoicetovivaldi']=$item['invoicetovivaldi']/$currency[$item['date']]['USD'];
+                        $item['endbalans']=$item['endbalans']/$currency[$item['date']]['USD'];
+                    }
+                    if($operators[$item['oid']]['currency'] == 'EUR'){
+                        $item['cost']=$item['cost']*$currency[$item['date']]['EUR']/$currency[$item['date']]['USD'];
+                        $item['invoicetovivaldi']=$item['invoicetovivaldi']*$currency[$item['date']]['EUR']/$currency[$item['date']]['USD'];
+                        $item['endbalans']=$item['endbalans']*$currency[$item['date']]['EUR']/$currency[$item['date']]['USD'];
+                    }
+
 					$operators[$item['oid']]['b_detail_report'][$item['date']] = $item['money_amount'];
 				}
 			}

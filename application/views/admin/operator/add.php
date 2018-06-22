@@ -33,8 +33,8 @@ if(isset($error)){echo "<font color=\"red\">Оператор уже сущест
             <td>Валюта</td>
             <td>
                 <select name="operator[currency]">
-                    <option value="RUB" selected>Рубль</option>
-                    <option value="USD" >Доллар</option>
+                    <option value="RUB" >Рубль</option>
+                    <option value="USD" selected>Доллар</option>
                     <option value="EUR" >Евро</option>
                 </select>
             </td>
