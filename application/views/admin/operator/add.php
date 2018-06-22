@@ -3,12 +3,15 @@
         <tr>
             <th>Добавление оператора:&nbsp;<?php
 if(isset($error)){echo "<font color=\"red\">Оператор уже существует</font>";}
+
                 ?></th>
 
         </tr>
         <tr>
             <td>id</td>
-            <td><input name="operator[id]" class="form-control" value="<?=$operator['id']?>"></td>
+            <td><input name="operator[id]" class="form-control" value="<?=$operator['id']?>">
+                <input name="operator[payment]" class="form-control" value="<?=$operator['payment']?>">
+            </td>
         </tr>
         <tr>
             <td>Название</td>

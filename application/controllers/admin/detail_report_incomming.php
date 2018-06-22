@@ -35,14 +35,26 @@
 				}
 			}
             $currencydata= $this->db->select("* from `b_currency` where `date` LIKE '" . date('Y-m', strtotime($year . "-" . $month . "-01")) . "%'");
-
             $currency = array();
-            foreach ($currencydata as $key => $data){
-                $currency[$data['date']][$data['currency']] = $data['price'];
+			if($currencydata) {
+                foreach ($currencydata as $key => $data) {
+                    $currency[$data['date']][$data['currency']] = $data['price'];
+                }
             }
+
+            /*
+             *     $currency ====
+             * [2018-06-22] => Array
+                    (
+                        [USD] => 63.7873
+                        [EUR] => 73.6871
+                    )
+             *
+             */
 			$res = $this->db->select("* from `b_detail_report_incomming` WHERE `date` LIKE '" . date('Y-m', strtotime($year . "-" . $month . "-01")) . "%'");
 			if ($res) {
 				foreach ($res AS $item) {
+
                     if($operators[$item['oid']]['currency'] == 'RUB' && isset($currency[$item['date']]['USD'])){
                         $item['money_amount'] = $item['money_amount'] / $currency[$item['date']]['USD'];
                     }
@@ -106,12 +118,12 @@
 					for($i=1; $i<=$end; $i++){
 						if(isset($sumbyday[$i])){
 							$totalsum = $totalsum + $sumbyday[$i];
-							echo '<td>'.$sumbyday[$i].'</td>';
+							echo '<td>'.number_format($sumbyday[$i], 2, '.', '').'</td>';
 						}else{
 							echo '<td>-</td>';
 						}
 					}
-				echo '<td>'.$totalsum.'</td></tr></tbody>
+				echo '<td>'.number_format($totalsum, 2, '.', '').'</td></tr></tbody>
 			</table>';
 		}
 		
@@ -124,12 +136,9 @@
 			$password = "AhW2po1c";
 			$summ = array();
 			$url = 'http://'.$serverip.'/bgbilling/executer?user='.$user.'&pswd='.$password.'&module=voiceip&pageSize=100&direct=2&mask=&contentType=xml&cid='.$oid.'&pageIndex=1&unit=1&action=LoginsAmount&date2='.date('d.m.Y', strtotime($date)).'&mid=4&date1='.date('d.m.Y', strtotime($date));
-			$data = simplexml_load_string(file_get_contents($url));
-			//echo "******************* " .$data['status']." *****";
             $currencydata= $this->db->select("* from `b_currency` where `date` ='".$date."'");
             $currency = array();
             if($currencydata != false) {
-
                 foreach ($currencydata as $key => $data) {
                     $currency[$data['date']][$data['currency']] = $data['price'];
                 }
@@ -137,7 +146,11 @@
 
             $operatorCurrency = $this->db->select("currency from `b_operators` where `disable`=0 and `id` = '".$oid."'",false);
 
+			$data = simplexml_load_string(file_get_contents($url));
+			//echo "******************* " .$data['status']." *****";
+
 			if ((string)$data['status'] == 'ok') {
+
 				$data = (float)$data->table->data->attributes()->money_amount;
 			
 				$check = $this->db->select('* FROM `b_detail_report_incomming` WHERE `date` = "' . $date . '" AND `oid` = ' . $oid, 0);
@@ -161,6 +174,7 @@
                     $data = $data * $currency[$date]['EUR'] / $currency[$date]['USD'];
 
                 }
+
 				echo number_format($data, 2, '.', '');
 			} else {
 				echo '-';

@@ -37,8 +37,10 @@
             $currencydata= $this->db->select("* from `b_currency` where `date` LIKE '" . date('Y-m', strtotime($year . "-" . $month . "-01")) . "%'");
 
 			$currency = array();
-            foreach ($currencydata as $key => $data){
-                $currency[$data['date']][$data['currency']] = $data['price'];
+            if($currencydata) {
+                foreach ($currencydata as $key => $data) {
+                    $currency[$data['date']][$data['currency']] = $data['price'];
+                }
             }
 /*
  *     $currency ====
@@ -56,8 +58,8 @@
                     if($operators[$item['oid']]['currency'] == 'RUB' && isset($currency[$item['date']]['USD'])){
                         $item['money_amount'] = $item['money_amount'] / $currency[$item['date']]['USD'];
                     }
-                    if($operators[$item['oid']]['currency'] == 'EUR' && isset($currency[$item['date']]['EUR']) &&  isset($currency[$item['date']]['USD'])){
-                        $item['money_amount'] = $item['money_amount']*$currency[$item['date']]['EUR']/$currency[$item['date']]['USD'];
+                    if($operators[$item['oid']]['currency'] == 'EUR' && isset($currency[$item['date']]['EUR']) && isset($currency[$item['date']]['USD'])){
+                        $item['money_amount'] = $item['money_amount'] * $currency[$item['date']]['EUR'] / $currency[$item['date']]['USD'];
 
                     }
 
@@ -138,8 +140,10 @@
 
 			$currencydata= $this->db->select("* from `b_currency` where `date` ='".$date."'");
             $currency = array();
-            foreach ($currencydata as $key => $data){
-                $currency[$data['date']][$data['currency']] = $data['price'];
+            if($currencydata != false) {
+                foreach ($currencydata as $key => $data) {
+                    $currency[$data['date']][$data['currency']] = $data['price'];
+                }
             }
 
             $operatorCurrency = $this->db->select("currency from `b_operators` where `disable`=0 and `id` = '".$oid."'",false);
