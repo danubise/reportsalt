@@ -364,6 +364,11 @@ ENDHTMLHEAD;
         // $data['billigperiod']=$reportdata['billigperiod'];
         //echo "html ------------------";
         //printarray($html);
+        if(trim($operatordata['currency']) == ""){
+            $operatordata['currency']="USD";
+        }
+        $html =str_replace("currency",$operatordata['currency'], $html);
+
         return $html;
     }
     private function billingdate($ardate){

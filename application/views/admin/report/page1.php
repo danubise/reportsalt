@@ -341,7 +341,7 @@
             <nobr>&nbsp;</nobr>
         </td>
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#000000;font-weight:bold;min-width:50px">
-            <nobr>Amount, USD</nobr>
+            <nobr>Amount, currency</nobr>
         </td>
     </tr>
     <tr style="height:19.533333333333px;">
