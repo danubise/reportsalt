@@ -39,12 +39,12 @@ class Report extends Core_controller {
     public function getCurrency() {
         $data = CBR_XML_Daily_Ru();
         $this->db->insert("b_currency", array(
-            "date" => "2018-06-09",
+            "date" => date("Y-m-d",time()),
             "currency" => "USD",
             "price" => $data->Valute->USD->Value
         ));
         $this->db->insert("b_currency", array(
-            "date" => "2018-06-09",
+            "date" => date("Y-m-d",time()),
             "currency" =>"EUR",
             "price" => $data->Valute->EUR->Value
         ));

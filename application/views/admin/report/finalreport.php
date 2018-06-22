@@ -63,6 +63,16 @@
          */
         if(isset($finaldata)):
         foreach($finaldata as $key=>$value):
+            if($row['currency'] == 'RUB'){
+                $value['cost']=$value['cost']/$currency['USD'];
+                $value['invoicetovivaldi']=$value['invoicetovivaldi']/$currency['USD'];
+                $value['endbalans']=$value['endbalans']/$currency['USD'];
+            }
+            if($row['currency'] == 'EUR'){
+                $value['cost']=$value['cost']*$currency['EUR']/$currency['USD'];
+                $value['invoicetovivaldi']=$value['invoicetovivaldi']*$currency['EUR']/$currency['USD'];
+                $value['endbalans']=$value['endbalans']*$currency['EUR']/$currency['USD'];
+            }
         ?>
         <tr>
         <td><?=$value['period']?></td>
