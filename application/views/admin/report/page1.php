@@ -447,8 +447,8 @@
         </td>
     </tr>
     <tr style="height:19.533333333333px;">
-        <td style="font-family:Times New Roman;font-size:10px;background-color:#ffffff;color:#ff0000;border-left-color:#333333;min-width:50px">
-            <nobr>&nbsp;</nobr>
+        <td style="font-family:Times New Roman;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;border-left-color:#333333;min-width:50px">
+            <nobr>Invoice is issued electronically and valid without a signature.</nobr>
         </td>
         <td style="font-family:Times New Roman;font-size:10px;background-color:#ffffff;color:#ff0000;min-width:50px">
             <nobr>&nbsp;</nobr>
@@ -481,7 +481,7 @@
         </td>
     </tr>
     <tr style="height:19.533333333333px;">
-        <td style="font-family:Times New Roman;font-size:10px;background-color:#ffffff;color:#ff0000;border-left-color:#333333;min-width:50px">
+        <td style="font-family:Times New Roman;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;border-left-color:#333333;min-width:50px">
             <nobr>&nbsp;</nobr>
         </td>
         <td style="font-family:Times New Roman;font-size:10px;background-color:#ffffff;color:#ff0000;min-width:50px">
