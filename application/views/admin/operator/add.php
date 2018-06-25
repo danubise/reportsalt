@@ -3,12 +3,15 @@
         <tr>
             <th>Добавление оператора:&nbsp;<?php
 if(isset($error)){echo "<font color=\"red\">Оператор уже существует</font>";}
+
                 ?></th>
 
         </tr>
         <tr>
             <td>id</td>
-            <td><input name="operator[id]" class="form-control" value="<?=$operator['id']?>"></td>
+            <td><input name="operator[id]" class="form-control" value="<?=$operator['id']?>">
+                <input name="operator[payment]" class="form-control" value="<?=$operator['payment']?>">
+            </td>
         </tr>
         <tr>
             <td>Название</td>
@@ -33,8 +36,8 @@ if(isset($error)){echo "<font color=\"red\">Оператор уже сущест
             <td>Валюта</td>
             <td>
                 <select name="operator[currency]">
-                    <option value="RUB" selected>Рубль</option>
-                    <option value="USD" >Доллар</option>
+                    <option value="RUB" >Рубль</option>
+                    <option value="USD" selected>Доллар</option>
                     <option value="EUR" >Евро</option>
                 </select>
             </td>

@@ -157,6 +157,17 @@ JOIN `b_operators` o ON
                 'result'=>0
             );
             foreach ($finaldata as $row) {
+
+                if($row['currency'] == 'RUB'){
+                    $row['cost']=$row['cost']/$currency['USD'];
+                    $row['invoicetovivaldi']=$row['invoicetovivaldi']/$currency['USD'];
+                    $row['endbalans']=$row['endbalans']/$currency['USD'];
+                }
+                if($row['currency'] == 'EUR'){
+                    $row['cost']=$row['cost']*$currency['EUR']/$currency['USD'];
+                    $row['invoicetovivaldi']=$row['invoicetovivaldi']*$currency['EUR']/$currency['USD'];
+                    $row['endbalans']=$row['endbalans']*$currency['EUR']/$currency['USD'];
+                }
                 $total['cost']+=$row['cost'];
                 $total['invoicetovivaldi']+=$row['invoicetovivaldi'];
 
@@ -940,10 +951,11 @@ FROM  `b_invoicemain` WHERE `invoiceid`='".$invoceid."'" , 0);
             <nobr>Duration,sec</nobr>
         </td>
         <td style="background-color:#a0e0e0;border:1px solid;border-left-color:#333333;border-right-color:#333333;border-top-color:#333333;border-bottom-color:#333333;min-width:50px">
-            <nobr>Amount, USD</nobr>
+            <nobr>Amount, currency</nobr>
         </td>
     </tr>
 ENDHTMLHEAD;
+
             if (is_array($detaildata)){
             foreach($detaildata as $report) {
                 $detailtable['body'] .= "
@@ -988,6 +1000,11 @@ ENDHTMLHEAD;
             // $data['billigperiod']=$reportdata['billigperiod'];
             //echo "html ------------------";
             //printarray($html);
+            if(trim($operatordata['currency']) == ""){
+                $operatordata['currency']="USD";
+            }
+            $html['html'] =str_replace("currency",$operatordata['currency'], $html['html']);
+
             return $html;
         }
         private function billingdate($ardate){
@@ -1248,10 +1265,11 @@ ENDHTMLHEAD;
             <nobr>Duration,sec</nobr>
         </td>
         <td style="background-color:#a0e0e0;border:1px solid;border-left-color:#333333;border-right-color:#333333;border-top-color:#333333;border-bottom-color:#333333;min-width:50px">
-            <nobr>Amount, USD</nobr>
+            <nobr>Amount, currency</nobr>
         </td>
     </tr>
 ENDHTMLHEAD;
+            //$detailtable['head'] =str_replace("currency",$operatordata['currency'], $detailtable['head']);
             foreach($reportdata['data'] as $report) {
                 $detailtable['body'] .= "
     <tr style=\"height:34px;\">

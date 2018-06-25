@@ -341,7 +341,7 @@
             <nobr>&nbsp;</nobr>
         </td>
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#000000;font-weight:bold;min-width:50px">
-            <nobr>Amount, USD</nobr>
+            <nobr>Amount, currency</nobr>
         </td>
     </tr>
     <tr style="height:19.533333333333px;">
@@ -460,17 +460,6 @@
             <nobr>&nbsp;</nobr>
         </td>
         <td style="font-family:Times New Roman;text-align:right;font-size:10px;background-color:#ffffff;color:#ff0000;min-width:50px" rowspan=2>
-            <nobr>&nbsp;</nobr>
-        </td>
-    </tr>
-    <tr style="height:19.533333333333px;">
-        <td style="font-family:Times New Roman;font-size:10px;background-color:#ffffff;color:#ff0000;border-left-color:#333333;min-width:50px">
-            <nobr>&nbsp;</nobr>
-        </td>
-        <td style="font-family:Times New Roman;font-size:10px;background-color:#ffffff;color:#ff0000;min-width:50px">
-            <nobr>&nbsp;</nobr>
-        </td>
-        <td style="font-family:Times New Roman;font-size:10px;background-color:#ffffff;color:#ff0000;min-width:50px">
             <nobr>&nbsp;</nobr>
         </td>
     </tr>
