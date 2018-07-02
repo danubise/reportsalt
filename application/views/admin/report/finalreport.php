@@ -63,12 +63,12 @@
          */
         if(isset($finaldata)):
         foreach($finaldata as $key=>$value):
-            if($row['currency'] == 'RUB'){
+            if($value['currency'] == 'RUB' && $currency['USD'] > 0){
                 $value['cost']=$value['cost']/$currency['USD'];
                 $value['invoicetovivaldi']=$value['invoicetovivaldi']/$currency['USD'];
                 $value['endbalans']=$value['endbalans']/$currency['USD'];
             }
-            if($row['currency'] == 'EUR'){
+            if($value['currency'] == 'EUR' && $currency['USD'] > 0){
                 $value['cost']=$value['cost']*$currency['EUR']/$currency['USD'];
                 $value['invoicetovivaldi']=$value['invoicetovivaldi']*$currency['EUR']/$currency['USD'];
                 $value['endbalans']=$value['endbalans']*$currency['EUR']/$currency['USD'];
@@ -77,9 +77,9 @@
         <tr>
         <td><?=$value['period']?></td>
         <td><?=$value['operatorname']?></td>
-        <td><?=$value['cost']?></td>
-        <td><?=$value['invoicetovivaldi']?></td>
-        <td><?=$value['endbalans']?></td>
+        <td><?=number_format($value['cost'], 2, '.', '')?></td>
+        <td><?=number_format($value['invoicetovivaldi'], 2, '.', '')?></td>
+        <td><?=number_format($value['endbalans'], 2, '.', '')?></td>
         <td><?=$value['manager']?></td>
 
         </tr>
@@ -92,13 +92,13 @@
     <tr>
         <td>Итого</td>
         <td></td>
-        <td><?=$cost?></td>
-        <td><?=$invoicetovivaldi?></td>
+        <td><?=number_format($cost, 2, '.', '')?></td>
+        <td><?=number_format($invoicetovivaldi, 2, '.', '')?></td>
     </tr>
     <tr>
         <td>Прибыль</td>
         <td></td>
-        <td><?=$cost+$invoicetovivaldi?></td>
+        <td><?=number_format($cost+$invoicetovivaldi, 2, '.', '')?></td>
         <td></td>
     </tr>
     <?php endif ;?>
