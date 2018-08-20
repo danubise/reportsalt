@@ -525,7 +525,7 @@
             <nobr>BANK NAME: Bank of Cyprus Public Company Ltd.<br/>
                 BANK ADDRESS: 121-123 Arch. Makariou III Ave., 3021, Limassol,Cyprus <br/>
                 BENEFICIARY`S BANK SWIFT: BCYPCY2N<br/>
-                BENEFICIARY`S ACCOUNT Number (IBAN) : accountnumberiban<br/>
+                BENEFICIARY`S ACCOUNT Number (IBAN) : accountnumberiban <br/>
                 <br/>
             </nobr>
         </td>
