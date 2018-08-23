@@ -364,10 +364,16 @@ ENDHTMLHEAD;
         // $data['billigperiod']=$reportdata['billigperiod'];
         //echo "html ------------------";
         //printarray($html);
-        if(trim($operatordata['currency']) == ""){
+        if(trim($operatordata['currency']) == "" || $operatordata['currency'] == "USD"){
             $operatordata['currency']="USD";
+            $accountnumberiban = "CY12002001950000357027353628 (USD)";
+        }else if($operatordata['currency'] == "RUB"){
+            $accountnumberiban = "CY12002001950000357027353628 (USD)";
+        }else {
+            $accountnumberiban = "CY43002001950000357027353555 (EURO)";
         }
-        $html =str_replace("currency",$operatordata['currency'], $html);
+        $html['html'] =str_replace("currency",$operatordata['currency'], $html['html']);
+        $html['html'] =str_replace("accountnumberiban",$accountnumberiban, $html['html']);
 
         return $html;
     }
