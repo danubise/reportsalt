@@ -78,6 +78,15 @@
             <td><input type="text" name="operator[iban]" class="form-control" value="<?=$operator['iban']?>"></td>
         </tr>
         <tr>
+            <td>Валюта</td>
+            <td>
+                <select name="operator[company]">
+                    <option value="Vivaldi Canada" <?php if($operator['company']=="Vivaldi Canada") echo "selected"; ?>>Vivaldi Canada</option>
+                    <option value="Vivaldi Bulgary" <?php if($operator['company']=="Vivaldi Bulgary") echo "selected"; ?>>Vivaldi Bulgary</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <th>&nbsp;</th>
             <td><button class="btn btn-primary">Добавить</button></td>
         </tr>

@@ -79,6 +79,15 @@ if(isset($error)){echo "<font color=\"red\">Оператор уже сущест
             <td><input type="text" name="operator[iban]" class="form-control" value="<?=$operator['iban']?>"></td>
         </tr>
         <tr>
+            <td>Company</td>
+            <td>
+                <select name="operator[company]">
+                    <option value="Vivaldi Canada" selected>Vivaldi Canada</option>
+                    <option value="Vivaldi Bulgary" >Vivaldi Bulgary</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <th>&nbsp;</th>
             <td><button class="btn btn-primary">Добавить</button></td>
         </tr>

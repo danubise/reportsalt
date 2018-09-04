@@ -20,8 +20,9 @@ printarray($value);
     <thead>
     <tr>
         <th>id</th>
-        <th>name</th>
-        <th>address</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Company</th>
     </tr>
     </thead>
     <tbody>
@@ -33,6 +34,7 @@ printarray($value);
                 <td><?=$operator['id']?>&nbsp;</td>
                 <td><?=$operator['name']?>&nbsp;</td>
                 <td><?=$operator['address']?>&nbsp;</td>
+                <td><?=$operator['company']?>&nbsp;</td>
                 <td><a href="<?= baseurl('operator/modify/' .$operator['id']) ?>">Изменить</a>/
                     <a href="<?= baseurl('operator/delete/' . $operator['id']) ?>">Удалить</a>/
                     <?php if($operator['disable']== "0"){
