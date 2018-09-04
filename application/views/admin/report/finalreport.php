@@ -26,23 +26,31 @@
  */
 //print_r($filtr);
 ?>
+<form method="post"  action="<?=baseurl('report/finalreport')?>">
+    <table>
+        <tr>
+            <td>
+                <select name="filtr[company]">
+                    <option value="" selected>Все</option>
+                    <option value="Vivaldi Canada" <?php if($filtr['company']=="Vivaldi Canada") echo "selected"; ?>>Vivaldi Canada</option>
+                    <option value="Vivaldi Bulgary" <?php if($filtr['company']=="Vivaldi Bulgary") echo "selected"; ?>>Vivaldi Bulgary</option>
+                </select>
+            </td>
+            <td><input type="date" name="filtr[datefrom]" value="<?=$filtr['datefrom']?>" ></td>
+            <td><input type="date" name="filtr[dateto]" value="<?=$filtr['dateto']?>" ></td>
+            <td><input type="submit" name="show" value="Показать"></td>
+            <td><input type="submit" name="download" value="Скачать"></td>
+        </tr>
+    </table>
+</form>
 <table  class="table table-striped" id="tableNum">
-    <thead>
     <tr>
-        <form method="post"  action="<?=baseurl('report/finalreport')?>">
-            <th><input type="date" name="filtr[datefrom]" value="<?=$filtr['datefrom']?>" ></th>
-            <th><input type="date" name="filtr[dateto]" value="<?=$filtr['dateto']?>" ></th>
-
-            <th><input type="submit" name="show" value="Показать"></th>
-            <th><input type="submit" name="download" value="Скачать"></th>
-            </form>
-    <tr>
-        <td>Период</td>
-        <td>Название оператора</td>
-        <td>Приход</td>
-        <td>Расход</td>
-        <td>Баланс на конец месяца</td>
-        <td>Менеджер</td>
+        <th>Период</th>
+        <th>Название оператора</th>
+        <th>Приход</th>
+        <th>Расход</th>
+        <th>Баланс на конец месяца</th>
+        <th>Менеджер</th>
 
     </tr>
         <?php
@@ -102,5 +110,5 @@
         <td></td>
     </tr>
     <?php endif ;?>
-    </thead>
+
     </table>

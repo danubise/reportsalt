@@ -77,6 +77,7 @@
         (
             [datefrom] => 2015-11-01
             [dateto] => 2015-11-30
+            [company] => *
         )
 
              */
@@ -110,7 +111,7 @@ JOIN `b_invoicemain` i2 ON
 	i2.`operatorid` = i.`operatorid`AND
 	i2.`dateto` = i.`maxdateto`
 JOIN `b_operators` o ON
-	o.`id` = i.`operatorid` AND  o.`disable`=0";
+	o.`id` = i.`operatorid` AND  o.`disable`=0 AND o.`company`='".$filtr['company']."'";
             $finaldata = $this->db->select($query);
 
             $currencydata= $this->db->select("* from `b_currency` where `date`='".$filtr['dateto']."'");
