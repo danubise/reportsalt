@@ -149,3 +149,117 @@ function logger($data,$id=""){
     $data=trim($data)."\n";
     file_put_contents($file, $data, FILE_APPEND );
 }
+
+function companyDivision($operatordata){
+    $companydata = array();
+
+    //Dollar by default
+    if (trim($operatordata['currency']) == "" ){
+        $operatordata['currency'] = "USD";
+    }
+    $companydata['currency']= $operatordata['currency'];
+
+if($operatordata['company'] == "Vivaldi Canada"){
+/*
+Registration number: SL 20672382
+Suite 260, 2323 - 32 A venue N.E.,Calgary, Alberta T2E 623, Canada
+tel.+15875578990, +7(8452) 67-45-96, fax +7(8452) 67-45-96
+www.vivalditele.com
+*/
+
+$companydata['address'][0] = "Vivaldi Telecom LP";
+$companydata['address'][1] = "Registration number: SL 20672382";
+$companydata['address'][2] = "Suite";
+$companydata['address'][3] = "260, 2323 - 32 A venue N.E.,";
+$companydata['address'][4] = "Calgary, Alberta T2E 623, Canada";
+$companydata['address'][5] = "tel.+15875578990, +7(8452) 67-45-96, fax +7(8452) 67-45-96";
+$companydata['address'][6] = "www.vivalditele.com";
+
+
+    if($operatordata['currency'] == "USD"){
+$companydata['bankDetails'][1] =
+"Beneficiary’s name: VIVALDI TELECOM LP<br/>
+Beneficiary’s Address: Suite 260, 2323 - 32 A venue N.E., Calgary, Alberta T2E 623, Canada";
+$companydata['bankDetails'][2] =
+"BANK NAME: Bank of Cyprus Public Company Ltd.<br/>
+BANK ADDRESS: 121-123 Arch. Makariou III Ave., 3021, Limassol,Cyprus<br/>
+BENEFICIARY`S BANK SWIFT: BCYPCY2N<br/>
+BENEFICIARY`S ACCOUNT Number (IBAN) : CY12002001950000357027353628 (USD)";
+    }else if($operatordata['currency'] == "RUB"){
+        $accountnumberiban = "CY12002001950000357027353628 (USD)";
+    }else {
+        $accountnumberiban = "CY43002001950000357027353555 (EURO)";
+$companydata['bankDetails'][1] =
+"Beneficiary’s name: VIVALDI TELECOM LP<br/>
+Beneficiary’s Address: Suite 260, 2323 - 32 A venue N.E., Calgary, Alberta T2E 623, Canada";
+
+$companydata['bankDetails'][2] =
+"BANK NAME: Bank of Cyprus Public Company Ltd.<br/>
+BANK ADDRESS: 121-123 Arch. Makariou III Ave., 3021, Limassol,Cyprus<br/>
+BENEFICIARY`S BANK SWIFT: BCYPCY2N<br/>
+BENEFICIARY`S ACCOUNT Number (IBAN) : CY43002001950000357027353555 (EURO)";
+    }
+}else{
+$companydata['address'][0] = "VIVALDI TELECOM LTD";
+$companydata['address'][1] = "Unique Identification Code:<br>BG205227648";
+$companydata['address'][2] = "&nbsp;";
+$companydata['address'][3] = "2 Golash street, 1000 District";
+$companydata['address'][4] = "of Slatina, Sofia, Bulgaria";
+$companydata['address'][5] = "Tel.+15875578990";
+$companydata['address'][6] = "Web site: www.vivalditele.com";
+/*
+VIVALDI TELECOM LTD
+Unique Identification Сode: BG205227648
+2 Golash street, 1000 District of Slatina, Sofia, Bulgaria
+Tel.+15875578990
+Web site: www.vivalditele.com
+*/
+    if(trim($operatordata['currency']) == "" || $operatordata['currency'] == "USD"){
+        $operatordata['currency']="USD";
+        $accountnumberiban = "CY12002001950000357027353628 (USD)";
+
+        $companydata['bankDetails'][1] =
+"Beneficiary’s name:  VIVALDI TELECOM LTD/ ВИВАЛДИ ТЕЛЕКОМ ЕООД<br/>
+Beneficiary’s Address: 2 Golash street, 1000 District of Slatina, Sofia, Bulgaria";
+
+$companydata['bankDetails'][2] =
+"BANK NAME: UNICREDIT BULBANK AD<br/>
+BANK ADDRESS: 7 SVETA NEDELYA SQUARE 1000 SOFIA BULGARIA<br/>
+BENEFICIARY`S BANK SWIFT: UNCRBGSF<br/>
+BENEFICIARY`S ACCOUNT Number(IBAN) : BG34UNCR70001523342166 (USD)";
+
+
+    }else {
+        $accountnumberiban = "CY43002001950000357027353555 (EURO)";
+        $companydata['bankDetails'][1] =
+"Beneficiary’s name:  VIVALDI TELECOM LTD/ ВИВАЛДИ ТЕЛЕКОМ ЕООД<br/>
+Beneficiary’s Address: 2 Golash street, 1000 District of Slatina, Sofia, Bulgaria";
+
+$companydata['bankDetails'][2] =
+"BANK NAME: UNICREDIT BULBANK AD<br/>
+BANK ADDRESS: 7 SVETA NEDELYA SQUARE 1000 SOFIA BULGARIA<br/>
+BENEFICIARY`S BANK SWIFT: UNCRBGSF<br/>
+BENEFICIARY`S ACCOUNT Number(IBAN) : BG73UNCR70001523342240 (EURO)";
+    }
+}
+
+//printarray($companydata);
+//die;
+return $companydata;
+}
+
+function replaceTemplate($htmldata, $operatordata){
+    $companyData = companyDivision($operatordata);
+    $htmldata =str_replace("currency", $companyData['currency'], $htmldata);
+    $htmldata =str_replace("bankDetails1", $companyData['bankDetails'][1], $htmldata);
+    $htmldata =str_replace("bankDetails2", $companyData['bankDetails'][2], $htmldata);
+    $htmldata =str_replace("address0", $companyData['address'][0], $htmldata);
+    $htmldata =str_replace("address1", $companyData['address'][1], $htmldata);
+    $htmldata =str_replace("address2", $companyData['address'][2], $htmldata);
+    $htmldata =str_replace("address3", $companyData['address'][3], $htmldata);
+    $htmldata =str_replace("address4", $companyData['address'][4], $htmldata);
+    $htmldata =str_replace("address5", $companyData['address'][5], $htmldata);
+    $htmldata =str_replace("address6", $companyData['address'][6], $htmldata);
+return $htmldata;
+
+}

@@ -354,27 +354,9 @@ ENDHTMLHEAD;
 </table>
 
 ";
-        // $page1=implode($page1);
-        // printarray($page1);
-        //  die;
         $html['maindata']=$maindata;
         $html['html']=$head.$page1.$detailtable['head'].$detailtable['body'].$detailtable['end'].$end;
-        // echo $html['html'];
-        //die;
-        // $data['billigperiod']=$reportdata['billigperiod'];
-        //echo "html ------------------";
-        //printarray($html);
-        if(trim($operatordata['currency']) == "" || $operatordata['currency'] == "USD"){
-            $operatordata['currency']="USD";
-            $accountnumberiban = "CY12002001950000357027353628 (USD)";
-        }else if($operatordata['currency'] == "RUB"){
-            $accountnumberiban = "CY12002001950000357027353628 (USD)";
-        }else {
-            $accountnumberiban = "CY43002001950000357027353555 (EURO)";
-        }
-        $html['html'] =str_replace("currency",$operatordata['currency'], $html['html']);
-        $html['html'] =str_replace("accountnumberiban",$accountnumberiban, $html['html']);
-
+        $html['html'] = replaceTemplate($html['html'] , $operatordata);
         return $html;
     }
     private function billingdate($ardate){

@@ -20,7 +20,7 @@
             <nobr>&nbsp;</nobr>
         </td>
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px" colspan=0>
-            <nobr>Vivaldi Telecom LP</nobr>
+            <nobr>address0</nobr>
         </td>
     </tr>
     <tr style="height:19.533333333333px;">
@@ -37,7 +37,7 @@
             <nobr>&nbsp;</nobr>
         </td>
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px" colspan=0>
-            <nobr>Registration number: SL 20672382</nobr>
+            <nobr>address1</nobr>
         </td>
     </tr>
     <tr style="height:19.533333333333px;">
@@ -48,13 +48,13 @@
             <nobr>&nbsp;</nobr>
         </td>
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px">
-            <nobr>Suite 260, 2323 -</nobr>
+            <nobr>address2</nobr>
         </td>
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px">
-            <nobr> 32 A venue N.E.,Calgary, Alberta</nobr>
+            <nobr>address3</nobr>
         </td>
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px">
-             <nobr>T2E 623, Canada</nobr>
+             <nobr>address4</nobr>
         </td>
     </tr>
     <tr style="height:19.533333333333px;">
@@ -62,7 +62,7 @@
             <nobr>&nbsp;</nobr>
         </td>
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px" colspan=4>
-            <nobr>tel.+15875578990, +7(8452) 67-45-96, fax +7(8452) 67-45-96</nobr>
+            <nobr>address5</nobr>
         </td>
     </tr>
     <tr style="height:20.866666666667px;">
@@ -70,7 +70,7 @@
             <nobr>&nbsp;</nobr>
         </td>
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px" colspan=4>
-            <nobr>www.vivalditele.com</nobr>
+            <nobr>address6</nobr>
         </td>
     </tr>
     <tr style="height:19.533333333333px;">
@@ -515,19 +515,12 @@
     </tr>
     <tr style="height:29px;">
         <td style="font-family:Times New Roman;font-size:12px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px" colspan=5>
-            <nobr>Beneficiary’s name:VIVALDI TELECOM LP<br/>
-                  Beneficiary’s Address: Suite 260, 2323 - 32 A venue N.E., Calgary, Alberta T2E 623, Canada
-            </nobr>
+            <nobr>bankDetails1</nobr>
         </td>
     </tr>
     <tr style="height:158px;">
         <td style="font-family:Times New Roman;font-size:12px;background-color:#ffffff;color:#084B8A;font-weight:bold;min-width:50px" colspan=5>
-            <nobr>BANK NAME: Bank of Cyprus Public Company Ltd.<br/>
-                BANK ADDRESS: 121-123 Arch. Makariou III Ave., 3021, Limassol,Cyprus <br/>
-                BENEFICIARY`S BANK SWIFT: BCYPCY2N<br/>
-                BENEFICIARY`S ACCOUNT Number (IBAN) : accountnumberiban <br/>
-                <br/>
-            </nobr>
+            <nobr>bankDetails2</nobr>
         </td>
     </tr>
     </tbody>
