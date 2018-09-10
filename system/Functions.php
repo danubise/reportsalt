@@ -174,12 +174,12 @@ $companydata['address'][3] = "260, 2323 - 32 A venue N.E.,";
 $companydata['address'][4] = "Calgary, Alberta T2E 623, Canada";
 $companydata['address'][5] = "tel.+15875578990, +7(8452) 67-45-96, fax +7(8452) 67-45-96";
 $companydata['address'][6] = "www.vivalditele.com";
-
-
-    if($operatordata['currency'] == "USD"){
 $companydata['bankDetails'][1] =
 "Beneficiary’s name: VIVALDI TELECOM LP<br/>
 Beneficiary’s Address: Suite 260, 2323 - 32 A venue N.E., Calgary, Alberta T2E 623, Canada";
+
+    if($operatordata['currency'] == "USD"){
+
 $companydata['bankDetails'][2] =
 "BANK NAME: Bank of Cyprus Public Company Ltd.<br/>
 BANK ADDRESS: 121-123 Arch. Makariou III Ave., 3021, Limassol,Cyprus<br/>
@@ -189,9 +189,6 @@ BENEFICIARY`S ACCOUNT Number (IBAN) : CY12002001950000357027353628 (USD)";
         $accountnumberiban = "CY12002001950000357027353628 (USD)";
     }else {
         $accountnumberiban = "CY43002001950000357027353555 (EURO)";
-$companydata['bankDetails'][1] =
-"Beneficiary’s name: VIVALDI TELECOM LP<br/>
-Beneficiary’s Address: Suite 260, 2323 - 32 A venue N.E., Calgary, Alberta T2E 623, Canada";
 
 $companydata['bankDetails'][2] =
 "BANK NAME: Bank of Cyprus Public Company Ltd.<br/>
@@ -207,6 +204,9 @@ $companydata['address'][3] = "2 Golash street, 1000 District";
 $companydata['address'][4] = "of Slatina, Sofia, Bulgaria";
 $companydata['address'][5] = "Tel.+15875578990";
 $companydata['address'][6] = "Web site: www.vivalditele.com";
+$companydata['bankDetails'][1] =
+"Beneficiary’s name:  VIVALDI TELECOM LTD<br/>
+Beneficiary’s Address: 2 Golash street, 1000 District of Slatina, Sofia, Bulgaria";
 /*
 VIVALDI TELECOM LTD
 Unique Identification Сode: BG205227648
@@ -218,9 +218,7 @@ Web site: www.vivalditele.com
         $operatordata['currency']="USD";
         $accountnumberiban = "CY12002001950000357027353628 (USD)";
 
-        $companydata['bankDetails'][1] =
-"Beneficiary’s name:  VIVALDI TELECOM LTD/ ВИВАЛДИ ТЕЛЕКОМ ЕООД<br/>
-Beneficiary’s Address: 2 Golash street, 1000 District of Slatina, Sofia, Bulgaria";
+
 
 $companydata['bankDetails'][2] =
 "BANK NAME: UNICREDIT BULBANK AD<br/>
@@ -231,9 +229,6 @@ BENEFICIARY`S ACCOUNT Number(IBAN) : BG34UNCR70001523342166 (USD)";
 
     }else {
         $accountnumberiban = "CY43002001950000357027353555 (EURO)";
-        $companydata['bankDetails'][1] =
-"Beneficiary’s name:  VIVALDI TELECOM LTD/ ВИВАЛДИ ТЕЛЕКОМ ЕООД<br/>
-Beneficiary’s Address: 2 Golash street, 1000 District of Slatina, Sofia, Bulgaria";
 
 $companydata['bankDetails'][2] =
 "BANK NAME: UNICREDIT BULBANK AD<br/>
