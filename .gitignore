@@ -6,4 +6,6 @@
 /application/controllers/admin/dompdf/
 /application/libs/PHPMailer-master/
 /application/libs/dompdf/
+system/daily.json
+test.php
 
