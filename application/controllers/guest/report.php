@@ -561,17 +561,18 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
             'duedate'=>$operator['payment']
         ));
         echo "OPERATION DATE";
-       printarray($operationdate);
+        printarray($operator);
+        printarray($operationdate);
 
-        if( trim($operator['invoice_id_edit'])!=""){
-            echo "will use exist invoice id - '".$operator['invoice_id_edit']."'";
+        if (trim($operator['invoice_id_edit']) != "") {
+            echo "will use exist invoice id - '" . $operator['invoice_id_edit'] . "'";
             $operator['invoiceid'] = $operator['invoice_id_edit'];
-        }else {
+        } else {
             $this->db->delete("from `b_sequense`");
             $this->db->query("INSERT INTO  `callwaytest`.`b_sequense` ( `id`) VALUES (NULL);");
             $operator['invoiceid'] = $this->db->select("`id` from `b_sequense`", 0);
         }
-        printarray($operator);
+
         echo "  ".$operator['id']."GETBILLING";
         //return;
         $serverip = "95.141.192.5:8080";

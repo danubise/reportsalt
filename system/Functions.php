@@ -173,8 +173,12 @@ $companydata['address'][2] = "Registration number: SL 20672382";
 $companydata['address'][3] = "Suite";
 $companydata['address'][4] = "260, 2323 - 32 A venue N.E.,";
 $companydata['address'][5] = "Calgary, Alberta T2E 623, Canada";
-$companydata['address'][6] = "tel.+15875578990, +7(8452) 67-45-96, fax +7(8452) 67-45-96";
-$companydata['address'][7] = "www.vivalditele.com";
+$companydata['address'][6] = "&nbsp;";
+$companydata['address'][7] = "tel.+15875578990, +7(84";
+$companydata['address'][8] = "52) 67-45-96, fax +7(8452) 67-45-96";
+
+$companydata['address'][9] = "www.vivalditele.com";
+$companydata['address'][10] = "";
 $companydata['bankDetails'][1] =
 "Beneficiary’s name: VIVALDI TELECOM LP<br/>
 Beneficiary’s Address: Suite 260, 2323 - 32 A venue N.E., Calgary, Alberta T2E 623, Canada";
@@ -200,12 +204,17 @@ BENEFICIARY`S ACCOUNT Number (IBAN) : CY43002001950000357027353555 (EURO)";
 }else{
 $companydata['address'][0] = "VIVALDI TELECOM LTD";
 $companydata['address'][1] = "Unique";
-$companydata['address'][2] = "Identification Code: BG205227648";
+$companydata['address'][2] = "Identification Code: 205227648";
 $companydata['address'][3] = "&nbsp;";
-$companydata['address'][4] = "2 Golash street, 1000 ";
-$companydata['address'][5] = "District of Slatina, Sofia, Bulgaria";
-$companydata['address'][6] = "Web site: www.vivalditele.com";
-$companydata['address'][7] = "Tel.+15875578990";
+$companydata['address'][4] = "&nbsp;";
+$companydata['address'][5] = "VAT: BG205227648";
+
+$companydata['address'][6] = "&nbsp;";
+$companydata['address'][7] = "2 Golash street, 1000 ";
+$companydata['address'][8] = "District of Slatina, Sofia, Bulgaria";
+$companydata['address'][9] = "Web site: www.vivalditele.com";
+$companydata['address'][10] = "Tel.+15875578990";
+
 $companydata['bankDetails'][1] =
 "Beneficiary’s name:  VIVALDI TELECOM LTD<br/>
 Beneficiary’s Address: 2 Golash street, 1000 District of Slatina, Sofia, Bulgaria";
@@ -250,14 +259,17 @@ function replaceTemplate($htmldata, $operatordata){
     $htmldata =str_replace("currency", $companyData['currency'], $htmldata);
     $htmldata =str_replace("bankDetails1", $companyData['bankDetails'][1], $htmldata);
     $htmldata =str_replace("bankDetails2", $companyData['bankDetails'][2], $htmldata);
-    $htmldata =str_replace("address0", $companyData['address'][0], $htmldata);
-    $htmldata =str_replace("address1", $companyData['address'][1], $htmldata);
-    $htmldata =str_replace("address2", $companyData['address'][2], $htmldata);
-    $htmldata =str_replace("address3", $companyData['address'][3], $htmldata);
-    $htmldata =str_replace("address4", $companyData['address'][4], $htmldata);
-    $htmldata =str_replace("address5", $companyData['address'][5], $htmldata);
-    $htmldata =str_replace("address6", $companyData['address'][6], $htmldata);
-    $htmldata =str_replace("address7", $companyData['address'][7], $htmldata);
+    $htmldata =str_replace("address00", $companyData['address'][0], $htmldata);
+    $htmldata =str_replace("address01", $companyData['address'][1], $htmldata);
+    $htmldata =str_replace("address02", $companyData['address'][2], $htmldata);
+    $htmldata =str_replace("address03", $companyData['address'][3], $htmldata);
+    $htmldata =str_replace("address04", $companyData['address'][4], $htmldata);
+    $htmldata =str_replace("address05", $companyData['address'][5], $htmldata);
+    $htmldata =str_replace("address06", $companyData['address'][6], $htmldata);
+    $htmldata =str_replace("address07", $companyData['address'][7], $htmldata);
+    $htmldata =str_replace("address08", $companyData['address'][8], $htmldata);
+    $htmldata =str_replace("address09", $companyData['address'][9], $htmldata);
+    $htmldata =str_replace("address10", $companyData['address'][10], $htmldata);
 return $htmldata;
 
 }
