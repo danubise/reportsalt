@@ -152,14 +152,21 @@ function logger($data,$id=""){
 function replaceInvoiceData($operatordata, $maindata){
 
     $page1 = file_get_contents('/var/www/html/report/application/views/admin/report/page1.php');
-
+    if($operatordata['company'] == "Vivaldi Bulgary" && $maindata['cost'] > 0  ) {
+        $page2 = file_get_contents('/var/www/html/report/application/views/admin/report/page2.php');
+        $page1 = $page1.$page2;
+    }
     $page1 = str_replace("billigperiod",$maindata['bperiodtext'],$page1);
     $page1 = str_replace("traffictotal",$maindata['timeminut'],$page1);
     //$page1 = str_replace("traffictotal",round($maindata['time']/60,2),$page1);
-    $page1 = str_replace("costtotal",round($maindata['cost'],2),$page1);
+
     $page1 = str_replace("duedate",$maindata['duedatetext'],$page1);
     $page1 = str_replace("currentdate",date("d.m.Y",strtotime($maindata['date'])),$page1);
+
+    $page1 = str_replace("operatoraddress",$operatordata['address'],$page1);
+    $br= "<br><br><br>";
     if($operatordata['company'] == "Vivaldi Bulgary" && $maindata['cost'] > 0  ){
+
         $bulgaryaVAT = "<tr style=\"height:19.533333333333px;\">
         <td style=\"font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#000000;font-weight:bold;min-width:50px\">
             <nobr>&nbsp;</nobr>
@@ -179,12 +186,15 @@ function replaceInvoiceData($operatordata, $maindata){
     </tr>";
         $page1 = str_replace("invoceid", $maindata['secondID'], $page1);
         $page1 = str_replace("bulgaryaVAT", $bulgaryaVAT, $page1);
+        $page1 = str_replace("contractDate", $operatordata['contractDate'], $page1);
+
     }else {
         $page1 = str_replace("invoceid", $maindata['invoiceid'], $page1);
         $page1 = str_replace("bulgaryaVAT", "", $page1);
+        $page1 = $page1.$br;
     }
+    $page1 = str_replace("costtotal",round($maindata['cost'],2),$page1);
     $page1 = str_replace("operatorname",$maindata['operatorname'],$page1);
-    $page1 = str_replace("operatoraddress",$operatordata['address'],$page1);
     return $page1;
 
 }
