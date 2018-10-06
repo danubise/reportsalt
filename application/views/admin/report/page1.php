@@ -353,6 +353,7 @@
             <nobr>costtotal</nobr>
         </td>
     </tr>
+    bulgaryaVAT
     <tr style="height:19.533333333333px;">
         <td style="font-family:Cambria;text-align:right;font-size:10px;background-color:#ffffff;color:#000000;font-weight:bold;min-width:50px">
             <nobr>&nbsp;</nobr>

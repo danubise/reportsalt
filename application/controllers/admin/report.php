@@ -886,7 +886,7 @@ Period ".$reporttimedata['billigperiod'].".";
                 return false;
             }
             $maindata=$this->db->select("
-            `id`,`invoiceid`,`date`,`operatorid`,`operatorname`,`bperiodtext`,`duedatetext`,`balans`,`realdatefrom`,`realdateto`,
+            `id`,`invoiceid`,`secondID`,`date`,`operatorid`,`operatorname`,`bperiodtext`,`duedatetext`,`balans`,`realdatefrom`,`realdateto`,
             SUM(`cost`) AS `cost`, SUM(`time`) AS `time`, SUM(`timeminut`) AS `timeminut`
 FROM  `b_invoicemain` WHERE `invoiceid`='".$invoceid."'" , 0);
             $operatordata=$this->db->select("* from `b_operators` WHERE `id`='".$maindata['operatorid']."'",0);
@@ -927,18 +927,7 @@ FROM  `b_invoicemain` WHERE `invoiceid`='".$invoceid."'" , 0);
             $head="<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" /></head><body>";
             $end="</body></html>";
 
-            $page1 = file_get_contents('/var/www/html/report/application/views/admin/report/page1.php');
-
-            $page1 = str_replace("billigperiod",$maindata['bperiodtext'],$page1);
-            $page1 = str_replace("traffictotal",$maindata['timeminut'],$page1);
-            //$page1 = str_replace("traffictotal",round($maindata['time']/60,2),$page1);
-            $page1 = str_replace("costtotal",round($maindata['cost'],2),$page1);
-            $page1 = str_replace("duedate",$maindata['duedatetext'],$page1);
-            $page1 = str_replace("currentdate",date("d.m.Y",strtotime($maindata['date'])),$page1);
-            $page1 = str_replace("invoceid",$maindata['invoiceid'],$page1);
-            $page1 = str_replace("operatorname",$maindata['operatorname'],$page1);
-            $page1 = str_replace("operatoraddress",$operatordata['address'],$page1);
-
+            $page1 = replaceInvoiceData( $operatordata, $maindata);
 
             $detailtable['head'] = <<< 'ENDHTMLHEAD'
 <hr>

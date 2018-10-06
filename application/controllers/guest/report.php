@@ -252,7 +252,7 @@ Period ".$invoice['maindata']['bperiodtext'].".";
             return false;
         }
         $maindata=$this->db->select("
-            `id`,`invoiceid`,`date`,`operatorid`,`operatorname`,`bperiodtext`,`duedatetext`,`balans`,`realdatefrom`,`realdateto`,
+            `id`,`invoiceid`,`secondID`,`date`,`operatorid`,`operatorname`,`bperiodtext`,`duedatetext`,`balans`,`realdatefrom`,`realdateto`,
             SUM(`cost`) AS `cost`, SUM(`time`) AS `time`, SUM(`timeminut`) AS `timeminut`
 FROM  `b_invoicemain` WHERE `invoiceid`='".$invoceid."'" , 0);
         $operatordata=$this->db->select("* from `b_operators` WHERE `id`='".$maindata['operatorid']."'",0);
@@ -292,20 +292,7 @@ FROM  `b_invoicemain` WHERE `invoiceid`='".$invoceid."'" , 0);
         // die;
         $head="<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" /></head><body>";
         $end="</body></html>";
-
-        $page1 = file_get_contents('/var/www/html/report/application/views/admin/report/page1.php');
-
-        $page1 = str_replace("billigperiod",$maindata['bperiodtext'],$page1);
-        $page1 = str_replace("traffictotal",$maindata['timeminut'],$page1);
-        //$page1 = str_replace("traffictotal",round($maindata['time']/60,2),$page1);
-        $page1 = str_replace("costtotal",round($maindata['cost'],2),$page1);
-        $page1 = str_replace("duedate",$maindata['duedatetext'],$page1);
-        $page1 = str_replace("currentdate",date("d.m.Y",strtotime($maindata['date'])),$page1);
-        $page1 = str_replace("invoceid",$maindata['invoiceid'],$page1);
-        $page1 = str_replace("operatorname",$maindata['operatorname'],$page1);
-        $page1 = str_replace("operatoraddress",$operatordata['address'],$page1);
-
-
+        $page1 = replaceInvoiceData( $operatordata, $maindata);
         $detailtable['head'] = <<< 'ENDHTMLHEAD'
 <hr>
 <table class="" cellspacing=0 border=1>
@@ -1015,9 +1002,17 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
                     'topartner'=>$paytopartner,
                     'invoicetovivaldi'=>$invoicetovivaldi,
                     'endbalans'=>$endbalans,
-                    'balans'=>$balans
+                    'balans'=>$balans,
+                    'secondID' =>""
 
                 );
+                if($operator['company'] == "Vivaldi Bulgary" && $maindata['cost'] > 0){
+                    echo "Add bulgary invoice code";
+                    $this->db->delete("from `b_bolgar_sequense`");
+                    $this->db->query("INSERT INTO  `callwaytest`.`b_bolgar_sequense` ( `id`) VALUES (NULL);");
+                    $bulgTypeInvoiceID = $this->db->select("`id` from `b_bolgar_sequense`", 0);
+                    $maindata['secondID'] = "VT-".sprintf("%08d", $bulgTypeInvoiceID);;
+                }
                // printarray($maindata);
                 $this->db->insert_queue_add('main'.$operator['id'], $maindata);
                 $this->db->insert_queue_send('main'.$operator['id']);
@@ -1072,7 +1067,8 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
                     'topartner'=>$paytopartner,
                     'invoicetovivaldi'=>$invoicetovivaldi,
                     'endbalans'=>$endbalans,
-                    'balans'=>$balans
+                    'balans'=>$balans,
+                    'secondID' => ""
 
                 );
                 // printarray($maindata);
