@@ -903,7 +903,7 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
             if (isset($array['table']['data']['row'])) {
                 $routedata=array();
                 echo "<br> ---------- ADD queue <br>";
-                $this->db->insert_queue('main'.$operator['id'], 'b_invoicemain',array('invoiceid','date','cost','time','timeminut','timetext','confirmation','log','datefrom','dateto','operatorid','month','operatorname','manager','bperiod','weekid','send','realdatefrom','realdateto','bperiodtext','duedatetext','conformid','part','tovivaldi','topartner','invoicetovivaldi','endbalans','balans'));
+                $this->db->insert_queue('main'.$operator['id'], 'b_invoicemain',array('invoiceid','date','cost','time','timeminut','timetext','confirmation','log','datefrom','dateto','operatorid','month','operatorname','manager','bperiod','weekid','send','realdatefrom','realdateto','bperiodtext','duedatetext','conformid','part','tovivaldi','topartner','invoicetovivaldi','endbalans','balans','secondID'));
                 $totalcost=0;
                 $totaltime=0;
                 foreach ($array['table']['data']['row'] as $aa) {
@@ -1011,7 +1011,7 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
                     $this->db->delete("from `b_bolgar_sequense`");
                     $this->db->query("INSERT INTO  `callwaytest`.`b_bolgar_sequense` ( `id`) VALUES (NULL);");
                     $bulgTypeInvoiceID = $this->db->select("`id` from `b_bolgar_sequense`", 0);
-                    $maindata['secondID'] = "VT-".sprintf("%08d", $bulgTypeInvoiceID);;
+                    $maindata['secondID'] = "VT-".sprintf("%09d", $bulgTypeInvoiceID);;
                 }
                // printarray($maindata);
                 $this->db->insert_queue_add('main'.$operator['id'], $maindata);
@@ -1020,7 +1020,7 @@ DELETE FROM `callwaytest`.`b_invoicedetail` WHERE  `invoiceid` LIKE  '4858';
             }else
             {
                 echo "empty invoice<br>";
-                $this->db->insert_queue('main'.$operator['id'], 'b_invoicemain',array('invoiceid','date','cost','time','timeminut','timetext','confirmation','log','datefrom','dateto','operatorid','month','operatorname','manager','bperiod','weekid','send','realdatefrom','realdateto','bperiodtext','duedatetext','conformid','part','tovivaldi','topartner','invoicetovivaldi','endbalans','balans'));
+                $this->db->insert_queue('main'.$operator['id'], 'b_invoicemain',array('invoiceid','date','cost','time','timeminut','timetext','confirmation','log','datefrom','dateto','operatorid','month','operatorname','manager','bperiod','weekid','send','realdatefrom','realdateto','bperiodtext','duedatetext','conformid','part','tovivaldi','topartner','invoicetovivaldi','endbalans','balans','secondID'));
 
                 $round_time_amount = "0.0";
                 $balans=$this->db->select("`endbalans` FROM `b_invoicemain` WHERE `operatorid`='".$operator['id']."' ORDER BY `date` DESC LIMIT 1",0);

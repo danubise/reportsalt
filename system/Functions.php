@@ -187,7 +187,6 @@ function replaceInvoiceData($operatordata, $maindata){
         $page1 = str_replace("invoceid", $maindata['secondID'], $page1);
         $page1 = str_replace("bulgaryaVAT", $bulgaryaVAT, $page1);
         $page1 = str_replace("contractDate", $operatordata['contractDate'], $page1);
-
     }else {
         $page1 = str_replace("invoceid", $maindata['invoiceid'], $page1);
         $page1 = str_replace("bulgaryaVAT", "", $page1);
